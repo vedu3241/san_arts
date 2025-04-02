@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Testimonials</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@motionone/dom"></script>
+  </head>
+  <body class="bg-gray-100 text-gray-900">
+    <!-- Header -->
+    <header class="bg-gray-900 text-white text-center py-6">
+      <h1 class="text-3xl font-bold">What Our Artists Say</h1>
+      <p class="text-gray-300">Real stories from talented artists worldwide</p>
+    </header>
+
+    <!-- Testimonials Section -->
+    <section class="max-w-5xl mx-auto py-12 px-4">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Testimonial Card -->
+        <div
+          class="testimonial-card p-6 bg-white shadow-lg rounded-xl transition-transform transform hover:scale-105"
+        >
+          <p class="text-gray-700 italic">
+            "This platform has given me global recognition for my art!"
+          </p>
+          <div class="flex items-center mt-4">
+            <img
+              src="https://i.pravatar.cc/50?img=1"
+              class="w-12 h-12 rounded-full mr-3"
+              alt="User"
+            />
+            <div>
+              <h3 class="font-semibold">John Doe</h3>
+              <span class="text-sm text-gray-500">Painter</span>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="testimonial-card p-6 bg-white shadow-lg rounded-xl transition-transform transform hover:scale-105"
+        >
+          <p class="text-gray-700 italic">
+            "I connected with so many buyers here. Amazing experience!"
+          </p>
+          <div class="flex items-center mt-4">
+            <img
+              src="https://i.pravatar.cc/50?img=2"
+              class="w-12 h-12 rounded-full mr-3"
+              alt="User"
+            />
+            <div>
+              <h3 class="font-semibold">Sarah Lee</h3>
+              <span class="text-sm text-gray-500">Digital Artist</span>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="testimonial-card p-6 bg-white shadow-lg rounded-xl transition-transform transform hover:scale-105"
+        >
+          <p class="text-gray-700 italic">
+            "A perfect place to showcase and sell my artwork!"
+          </p>
+          <div class="flex items-center mt-4">
+            <img
+              src="https://i.pravatar.cc/50?img=3"
+              class="w-12 h-12 rounded-full mr-3"
+              alt="User"
+            />
+            <div>
+              <h3 class="font-semibold">Michael Scott</h3>
+              <span class="text-sm text-gray-500">Sculptor</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Animation Script -->
+    <script>
+      document.querySelectorAll(".testimonial-card").forEach((card, index) => {
+        setTimeout(() => {
+          motion.animate(
+            card,
+            { opacity: [0, 1], y: [-50, 0] },
+            { duration: 0.8, easing: "ease-in-out" }
+          );
+        }, index * 200);
+      });
+    </script>
+  </body>
+</html>

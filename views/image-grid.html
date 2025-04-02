@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Art Gallery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      function changeTab(tab) {
+        // Remove active state from all tabs
+        document.querySelectorAll(".tab-btn").forEach((btn) => {
+          btn.classList.remove("bg-blue-600", "text-white");
+          btn.classList.add("bg-gray-200", "text-gray-800");
+        });
+
+        // Add active state to selected tab
+        const selectedTab = document.getElementById(tab + "Tab");
+        selectedTab.classList.remove("bg-gray-200", "text-gray-800");
+        selectedTab.classList.add("bg-blue-600", "text-white");
+
+        // Show/hide images based on tab
+        document.querySelectorAll(".image-wrapper").forEach((wrapper) => {
+          wrapper.classList.add("hidden");
+        });
+
+        const tabImages = document.querySelectorAll(`.${tab}-wrapper`);
+        tabImages.forEach((wrapper) => {
+          wrapper.classList.remove("hidden");
+        });
+      }
+    </script>
+  </head>
+  <body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+    <section>
+      
+    </section>
+    <div class="bg-white shadow-lg rounded-xl p-6 w-full max-w-4xl">
+      <!-- Tabs -->
+      <div class="flex flex-wrap justify-center space-x-2 md:space-x-4 mb-6">
+        <button
+          id="digitalArtTab"
+          class="tab-btn px-3 md:px-4 py-2 rounded-md bg-blue-600 text-white transition-colors duration-300 mb-2"
+          onclick="changeTab('digitalArt')"
+        >
+          Digital Art
+        </button>
+        <button
+          id="pencilSketchTab"
+          class="tab-btn px-3 md:px-4 py-2 rounded-md bg-gray-200 text-gray-800 transition-colors duration-300 mb-2"
+          onclick="changeTab('pencilSketch')"
+        >
+          Pencil Sketch
+        </button>
+        <button
+          id="livePaintingTab"
+          class="tab-btn px-3 md:px-4 py-2 rounded-md bg-gray-200 text-gray-800 transition-colors duration-300 mb-2"
+          onclick="changeTab('livePainting')"
+        >
+          Live Painting
+        </button>
+      </div>
+
+      <!-- Image Grid - Responsive: 1 column on mobile, 3 columns on desktop -->
+      <div class="image-grid grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <!-- Digital Art Images (Active by Default) -->
+        <div class="digitalArt-wrapper image-wrapper overflow-hidden rounded-lg shadow-md h-64">
+          <img
+            src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80"
+            alt="Digital Art 1"
+            class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+          />
+        </div>
+        <div class="digitalArt-wrapper image-wrapper overflow-hidden rounded-lg shadow-md h-64">
+          <img
+            src="https://images.unsplash.com/photo-1633186710895-309db2dfb009?auto=format&fit=crop&w=800&q=80"
+            alt="Digital Art 2"
+            class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+          />
+        </div>
+        <div class="digitalArt-wrapper image-wrapper overflow-hidden rounded-lg shadow-md h-64">
+          <img
+            src="https://images.unsplash.com/photo-1614729375293-d3a4dabd7f86?auto=format&fit=crop&w=800&q=80"
+            alt="Digital Art 3"
+            class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+          />
+        </div>
+        <div class="digitalArt-wrapper image-wrapper overflow-hidden rounded-lg shadow-md h-64">
+          <img
+            src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=800&q=80"
+            alt="Digital Art 4"
+            class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+          />
+        </div>
+        <div class="digitalArt-wrapper image-wrapper overflow-hidden rounded-lg shadow-md h-64">
+          <img
+            src="https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?auto=format&fit=crop&w=800&q=80"
+            alt="Digital Art 5"
+            class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+          />
+        </div>
+        <div class="digitalArt-wrapper image-wrapper overflow-hidden rounded-lg shadow-md h-64">
+          <img
+            src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80"
+            alt="Digital Art 6"
+            class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+          />
+        </div>
+        <div class="digitalArt-wrapper image-wrapper overflow-hidden rounded-lg shadow-md h-64">
+          <img
+            src="https://images.unsplash.com/photo-1633186710895-309db2dfb009?auto=format&fit=crop&w=800&q=80"
+            alt="Digital Art 7"
+            class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+          />
+        </div>
+        <div class="digitalArt-wrapper image-wrapper overflow-hidden rounded-lg shadow-md h-64">
+          <img
+            src="https://images.unsplash.com/photo-1614729375293-d3a4dabd7f86?auto=format&fit=crop&w=800&q=80"
+            alt="Digital Art 8"
+            class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+          />
+        </div>
+        <div class="digitalArt-wrapper image-wrapper overflow-hidden rounded-lg shadow-md h-64">
+          <img
+            src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=800&q=80"
+            alt="Digital Art 9"
+            class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+          />
+        </div>
+
+        <!-- Pencil Sketch Images (Hidden by Default) -->
+        <div class="pencilSketch-wrapper image-wrapper overflow-hidden rounded-lg shadow-md h-64 hidden">
+          <img
+            src="https://images.unsplash.com/photo-1572883454114-1cf0031ede2a?auto=format&fit=crop&w=800&q=80"
+            alt="Pencil Sketch 1"
+            class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+          />
+        </div>
+        <div class="pencilSketch-wrapper image-wrapper overflow-hidden rounded-lg shadow-md h-64 hidden">
+          <img
+            src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=800&q=80"
+            alt="Pencil Sketch 2"
+            class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+          />
+        </div>
+        <div class="pencilSketch-wrapper image-wrapper overflow-hidden rounded-lg shadow-md h-64 hidden">
+          <img
+            src="https://images.unsplash.com/photo-1613312328068-c9b6b76c9e8a?auto=format&fit=crop&w=800&q=80"
+            alt="Pencil Sketch 3"
+            class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+          />
+        </div>
+        <div class="pencilSketch-wrapper image-wrapper overflow-hidden rounded-lg shadow-md h-64 hidden">
+          <img
+            src="https://images.unsplash.com/photo-1582201942988-13e60e4556ee?auto=format&fit=crop&w=800&q=80"
+            alt="Pencil Sketch 4"
+            class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+          />
+        </div>
+        <div class="pencilSketch-wrapper image-wrapper overflow-hidden rounded-lg shadow-md h-64 hidden">
+          <img
+            src="https://images.unsplash.com/photo-1605095743754-5a6b44c1f5e9?auto=format&fit=crop&w=800&q=80"
+            alt="Pencil Sketch 5"
+            class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+          />
+        </div>
+        <div class="pencilSketch-wrapper image-wrapper overflow-hidden rounded-lg shadow-md h-64 hidden">
+          <img
+            src="https://images.unsplash.com/photo-1572883454114-1cf0031ede2a?auto=format&fit=crop&w=800&q=80"
+            alt="Pencil Sketch 6"
+            class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+          />
+        </div>
+        <div class="pencilSketch-wrapper image-wrapper overflow-hidden rounded-lg shadow-md h-64 hidden">
+          <img
+            src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=800&q=80"
+            alt="Pencil Sketch 7"
+            class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+          />
+        </div>
+        <div class="pencilSketch-wrapper image-wrapper overflow-hidden rounded-lg shadow-md h-64 hidden">
+          <img
+            src="https://images.unsplash.com/photo-1613312328068-c9b6b76c9e8a?auto=format&fit=crop&w=800&q=80"
+            alt="Pencil Sketch 8"
+            class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+          />
+        </div>
+        <div class="pencilSketch-wrapper image-wrapper overflow-hidden rounded-lg shadow-md h-64 hidden">
+          <img
+            src="https://images.unsplash.com/photo-1582201942988-13e60e4556ee?auto=format&fit=crop&w=800&q=80"
+            alt="Pencil Sketch 9"
+            class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+          />
+        </div>
+
+        <!-- Live Painting Images (Hidden by Default) -->
+        <div class="livePainting-wrapper image-wrapper overflow-hidden rounded-lg shadow-md h-64 hidden">
+          <img
+            src="https://images.unsplash.com/photo-1579762715118-a6f1d4b934f1?auto=format&fit=crop&w=800&q=80"
+            alt="Live Painting 1"
+            class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+          />
+        </div>
+        <div class="livePainting-wrapper image-wrapper overflow-hidden rounded-lg shadow-md h-64 hidden">
+          <img
+            src="https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?auto=format&fit=crop&w=800&q=80"
+            alt="Live Painting 2"
+            class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+          />
+        </div>
+        <div class="livePainting-wrapper image-wrapper overflow-hidden rounded-lg shadow-md h-64 hidden">
+          <img
+            src="https://images.unsplash.com/photo-1541753866388-0b3c701627d3?auto=format&fit=crop&w=800&q=80"
+            alt="Live Painting 3"
+            class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+          />
+        </div>
+        <div class="livePainting-wrapper image-wrapper overflow-hidden rounded-lg shadow-md h-64 hidden">
+          <img
+            src="https://images.unsplash.com/photo-1579762715459-3d2d5f2170f3?auto=format&fit=crop&w=800&q=80"
+            alt="Live Painting 4"
+            class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+          />
+        </div>
+        <div class="livePainting-wrapper image-wrapper overflow-hidden rounded-lg shadow-md h-64 hidden">
+          <img
+            src="https://images.unsplash.com/photo-1571267359313-b9e6b35d2a07?auto=format&fit=crop&w=800&q=80"
+            alt="Live Painting 5"
+            class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+          />
+        </div>
+        <div class="livePainting-wrapper image-wrapper overflow-hidden rounded-lg shadow-md h-64 hidden">
+          <img
+            src="https://images.unsplash.com/photo-1579762715118-a6f1d4b934f1?auto=format&fit=crop&w=800&q=80"
+            alt="Live Painting 6"
+            class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+          />
+        </div>
+        <div class="livePainting-wrapper image-wrapper overflow-hidden rounded-lg shadow-md h-64 hidden">
+          <img
+            src="https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?auto=format&fit=crop&w=800&q=80"
+            alt="Live Painting 7"
+            class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+          />
+        </div>
+        <div class="livePainting-wrapper image-wrapper overflow-hidden rounded-lg shadow-md h-64 hidden">
+          <img
+            src="https://images.unsplash.com/photo-1541753866388-0b3c701627d3?auto=format&fit=crop&w=800&q=80"
+            alt="Live Painting 8"
+            class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+          />
+        </div>
+        <div class="livePainting-wrapper image-wrapper overflow-hidden rounded-lg shadow-md h-64 hidden">
+          <img
+            src="https://images.unsplash.com/photo-1579762715459-3d2d5f2170f3?auto=format&fit=crop&w=800&q=80"
+            alt="Live Painting 9"
+            class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+          />
+        </div>
+      </div>
+
+      <!-- Load More Button -->
+      <div class="flex justify-center">
+        <button
+          class="px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors duration-300"
+        >
+          Load More
+        </button>
+      </div>
+    </div>
+  </body>
+</html>

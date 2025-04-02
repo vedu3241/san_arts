@@ -1,0 +1,340 @@
+<%- include('./partials/header.ejs') %>
+<!-- testimonials section -->
+    <section class="py-16 bg-gradient-to-br from-indigo-50 to-purple-50">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold text-gray-800 mb-4">
+            What Clients Are Saying
+          </h2>
+          <div class="w-24 h-1 bg-purple-500 mx-auto"></div>
+          <p class="mt-6 text-gray-600 max-w-2xl mx-auto">
+            Discover how my artwork has touched the lives of clients around the
+            world.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <% testimonials.forEach((testimonial, index) => { %>
+          <div
+            class="bg-white rounded-lg shadow-lg p-8 transform transition duration-500 hover:scale-105 hover:shadow-xl"
+            data-aos="fade-up"
+            data-aos-delay="<%= index * 100 %>"
+          >
+            <div class="flex justify-center mb-6">
+              <img
+                src="<%= testimonial.image %>"
+                alt="<%= testimonial.name %>"
+                class="w-20 h-20 rounded-full object-cover border-4 border-purple-200"
+                loading="lazy"
+                onerror="this.src='/images/default-avatar.jpg'; this.onerror='';"
+              />
+            </div>
+
+            <div class="text-center">
+              <div class="flex justify-center mb-4">
+                <% for(let i = 0; i < 5; i++) { %>
+                <svg
+                  class="w-5 h-5 <%= i < testimonial.rating ? 'text-yellow-400' : 'text-gray-300' %>"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                  ></path>
+                </svg>
+                <% } %>
+              </div>
+
+              <div class="relative mb-6">
+                <svg
+                  class="absolute top-0 left-0 w-8 h-8 text-purple-200 -mt-3 -ml-4 opacity-50"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"
+                  ></path>
+                </svg>
+                <p class="text-gray-600 italic">"<%= testimonial.text %>"</p>
+              </div>
+
+              <h3 class="font-semibold text-lg text-gray-800">
+                <%= testimonial.name %>
+              </h3>
+              <p class="text-purple-500 text-sm"><%= testimonial.location %></p>
+              <% if (testimonial.artwork) { %>
+              <div
+                class="mt-4 opacity-90 hover:opacity-100 transition-opacity duration-300"
+              >
+                <img
+                  src="<%= testimonial.artwork %>"
+                  alt="Commissioned artwork"
+                  class="h-24 mx-auto rounded-md object-cover shadow-sm"
+                  loading="lazy"
+                  onerror="this.src='/images/default-artwork.jpg'; this.onerror='';"
+                />
+              </div>
+              <% } %>
+            </div>
+          </div>
+          <% }); %>
+        </div>
+
+        <div class="text-center mt-16">
+          <button
+            class="bg-purple-600 text-white px-8 py-3 rounded-full font-medium hover:bg-purple-700 transition-colors duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-1"
+          >
+            Read More Testimonials
+          </button>
+        </div>
+      </div>
+    </section>
+    <!-- contact-us section  -->
+    <section id="contact" class="py-16 bg-gradient-to-b from-white to-purple-50">
+        <div class="container mx-auto px-4">
+          <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-gray-800 mb-4">Get In Touch</h2>
+            <div class="w-24 h-1 bg-purple-500 mx-auto"></div>
+            <p class="mt-6 text-gray-600 max-w-2xl mx-auto">Have a commission in mind? Questions about my process? I'd love to hear from you.</p>
+          </div>
+          
+          <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+              <!-- Contact Form -->
+              <div 
+                class="bg-white rounded-lg shadow-xl p-8 transform transition duration-500 hover:shadow-2xl"
+                data-aos="fade-right"
+              >
+                <h3 class="text-2xl font-semibold text-gray-800 mb-6">Send a Message</h3>
+                
+                <form action="/submit-contact" method="POST" class="space-y-6">
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                      <label for="name" class="block text-sm font-medium text-gray-700">Your Name</label>
+                      <input 
+                        type="text" 
+                        id="name" 
+                        name="name" 
+                        required 
+                        class="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-200"
+                        placeholder="Jane Smith"
+                      >
+                    </div>
+                    
+                    <div class="space-y-2">
+                      <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                      <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        required 
+                        class="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-200"
+                        placeholder="jane@example.com"
+                      >
+                    </div>
+                  </div>
+                  
+                  <div class="space-y-2">
+                    <label for="subject" class="block text-sm font-medium text-gray-700">Subject</label>
+                    <input 
+                      type="text" 
+                      id="subject" 
+                      name="subject" 
+                      required 
+                      class="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-200"
+                      placeholder="Commission Request"
+                    >
+                  </div>
+                  
+                  <div class="space-y-2">
+                    <label for="message" class="block text-sm font-medium text-gray-700">Your Message</label>
+                    <textarea 
+                      id="message" 
+                      name="message" 
+                      rows="5" 
+                      required 
+                      class="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-200"
+                      placeholder="Tell me about your project or inquiry..."
+                    ></textarea>
+                  </div>
+                  
+                  <div class="space-y-2">
+                    <label for="service" class="block text-sm font-medium text-gray-700">What service are you interested in?</label>
+                    <select 
+                      id="service" 
+                      name="service" 
+                      class="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-200"
+                    >
+                      <option value="" disabled selected>Please select an option</option>
+                      <% if (typeof services !== 'undefined' && services) { %>
+                        <% services.forEach(service => { %>
+                          <option value="<%= service.id %>"><%= service.name %></option>
+                        <% }); %>
+                      <% } else { %>
+                        <option value="commission">Custom Commission</option>
+                        <option value="portrait">Portrait</option>
+                        <option value="illustration">Illustration</option>
+                        <option value="original">Original Artwork</option>
+                        <option value="other">Other</option>
+                      <% } %>
+                    </select>
+                  </div>
+                  
+                  <div class="flex items-center">
+                    <input 
+                      type="checkbox" 
+                      id="newsletter" 
+                      name="newsletter" 
+                      class="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
+                    >
+                    <label for="newsletter" class="ml-2 block text-sm text-gray-700">
+                      Subscribe to newsletter for updates on new artwork and exhibitions
+                    </label>
+                  </div>
+                  
+                  <button 
+                    type="submit" 
+                    class="w-full bg-purple-600 text-white font-medium py-3 px-6 rounded-md hover:bg-purple-700 transition-colors duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50"
+                  >
+                    Send Message
+                  </button>
+                </form>
+              </div>
+              
+              <!-- Contact Info & Image -->
+              <div data-aos="fade-left">
+                <div class="bg-purple-100 rounded-lg p-8 mb-8">
+                  <h3 class="text-2xl font-semibold text-gray-800 mb-6">Connect With Me</h3>
+                  
+                  <div class="space-y-4">
+                    <div class="flex items-start">
+                      <div class="flex-shrink-0 mt-1">
+                        <svg class="h-6 w-6 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                      </div>
+                      <div class="ml-3">
+                        <p class="text-sm font-medium text-gray-700">Email</p>
+                        <a href="mailto:<%= typeof contactEmail !== 'undefined' ? contactEmail : 'artist@example.com' %>" class="text-base text-purple-600 hover:text-purple-800 transition-colors duration-200">
+                          <%= typeof contactEmail !== 'undefined' ? contactEmail : 'artist@example.com' %>
+                        </a>
+                      </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                      <div class="flex-shrink-0 mt-1">
+                        <svg class="h-6 w-6 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                        </svg>
+                      </div>
+                      <div class="ml-3">
+                        <p class="text-sm font-medium text-gray-700">Phone</p>
+                        <a href="tel:<%= typeof contactPhone !== 'undefined' ? contactPhone : '+1 (555) 123-4567' %>" class="text-base text-purple-600 hover:text-purple-800 transition-colors duration-200">
+                          <%= typeof contactPhone !== 'undefined' ? contactPhone : '+1 (555) 123-4567' %>
+                        </a>
+                      </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                      <div class="flex-shrink-0 mt-1">
+                        <svg class="h-6 w-6 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                      </div>
+                      <div class="ml-3">
+                        <p class="text-sm font-medium text-gray-700">Studio Location</p>
+                        <p class="text-base text-gray-800">
+                          <%= typeof studioAddress !== 'undefined' ? studioAddress : 'Art District, 123 Creative Lane, New York, NY 10001' %>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="mt-8">
+                    <h4 class="text-lg font-semibold text-gray-800 mb-3">Follow Me</h4>
+                    <div class="flex space-x-4">
+                      <a href="<%= typeof social && social.instagram ? social.instagram : '#' %>" class="text-gray-600 hover:text-purple-600 transition-colors duration-200">
+                        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                        </svg>
+                      </a>
+                      <a href="<%= typeof social && social.facebook ? social.facebook : '#' %>" class="text-gray-600 hover:text-purple-600 transition-colors duration-200">
+                        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                        </svg>
+                      </a>
+                      <a href="<%= typeof social && social.twitter ? social.twitter : '#' %>" class="text-gray-600 hover:text-purple-600 transition-colors duration-200">
+                        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
+                        </svg>
+                      </a>
+                      <a href="<%= typeof social && social.pinterest ? social.pinterest : '#' %>" class="text-gray-600 hover:text-purple-600 transition-colors duration-200">
+                        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M12 0c-6.627 0-12 5.372-12 12 0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146 1.124.347 2.317.535 3.554.535 6.627 0 12-5.373 12-12 0-6.628-5.373-12-12-12z" />
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="rounded-lg overflow-hidden shadow-lg transform transition duration-500 hover:scale-[1.02]">
+                  <img 
+                    src="<%= typeof studioImage !== 'undefined' ? studioImage : 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' %>" 
+                    alt="Art Studio" 
+                    class="w-full h-64 object-cover"
+                    loading="lazy"
+                  >
+                  <div class="py-4 px-6 bg-white">
+                    <p class="text-gray-600 text-sm italic">My creative space where the magic happens. Visits by appointment only.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- FAQ Section -->
+          <div class="max-w-3xl mx-auto mt-20">
+            <h3 class="text-2xl font-semibold text-gray-800 mb-8 text-center">Frequently Asked Questions</h3>
+            
+            <div class="space-y-6" data-aos="fade-up">
+              <% const faqs = typeof faqItems !== 'undefined' && faqItems ? faqItems : [
+                {
+                  question: "How long does a commission typically take?",
+                  answer: "The timeline varies depending on project complexity and my current workload. Small pieces generally take 2-3 weeks, while larger or more detailed commissions may take 4-8 weeks. I'll provide a specific timeline estimate when discussing your project."
+                },
+                {
+                  question: "Do you ship internationally?",
+                  answer: "Yes! I ship artwork worldwide using insured and tracked shipping services. International shipping costs will be calculated based on your location and the size/weight of the artwork."
+                },
+                {
+                  question: "What information should I include when requesting a commission?",
+                  answer: "Please share your vision, desired size, color palette preferences, intended display location, and timeline needs. Reference images are also very helpful! The more details you provide, the better I can bring your vision to life."
+                }
+              ]; %>
+              
+              <% faqs.forEach((faq, index) => { %>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                  <details class="group">
+                    <summary class="flex items-center justify-between p-6 cursor-pointer">
+                      <h3 class="text-lg font-medium text-gray-900"><%= faq.question %></h3>
+                      <span class="ml-6 flex-shrink-0 text-purple-500 group-open:rotate-180 transition-transform duration-300">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </span>
+                    </summary>
+                    <div class="px-6 pb-6 pt-0 text-gray-700">
+                      <p><%= faq.answer %></p>
+                    </div>
+                  </details>
+                </div>
+              <% }); %>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+  </body>
+</html>

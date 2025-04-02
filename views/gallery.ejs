@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Art Gallery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      function changeTab(tab) {
+        // Remove active state from all tabs
+        document.querySelectorAll(".tab-btn").forEach((btn) => {
+          btn.classList.remove("bg-blue-600", "text-white");
+          btn.classList.add("bg-gray-200", "text-gray-800");
+        });
+
+        // Add active state to selected tab
+        const selectedTab = document.getElementById(tab + "Tab");
+        selectedTab.classList.remove("bg-gray-200", "text-gray-800");
+        selectedTab.classList.add("bg-blue-600", "text-white");
+
+        // Show/hide images based on tab
+        document.querySelectorAll(".image-grid img").forEach((img) => {
+          img.classList.add("hidden");
+        });
+
+        const tabImages = document.querySelectorAll(`.${tab}-image`);
+        tabImages.forEach((img) => {
+          img.classList.remove("hidden");
+        });
+      }
+    </script>
+  </head>
+  <body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+    <div class="bg-white shadow-lg rounded-xl p-6 w-full max-w-4xl">
+      <!-- Tabs -->
+      <div class="flex justify-center space-x-4 mb-6">
+        <button
+          id="digitalArtTab"
+          class="tab-btn px-4 py-2 rounded-md bg-blue-600 text-white transition-colors duration-300"
+          onclick="changeTab('digitalArt')"
+        >
+          Digital Art
+        </button>
+        <button
+          id="pencilSketchTab"
+          class="tab-btn px-4 py-2 rounded-md bg-gray-200 text-gray-800 transition-colors duration-300"
+          onclick="changeTab('pencilSketch')"
+        >
+          Pencil Sketch
+        </button>
+        <button
+          id="livePaintingTab"
+          class="tab-btn px-4 py-2 rounded-md bg-gray-200 text-gray-800 transition-colors duration-300"
+          onclick="changeTab('livePainting')"
+        >
+          Live Painting
+        </button>
+      </div>
+
+      <!-- Image Grid -->
+      <div class="image-grid grid grid-cols-3 gap-4 mb-6">
+        <!-- Digital Art Images (Active by Default) -->
+        <img
+          src="https://images.unsplash.com/photo-1617881770125-6d02cb5c34de"
+          alt="Digital Art 1"
+          class="digitalArt-image w-full h-64 object-cover rounded-lg shadow-md"
+        />
+        <img
+          src="https://images.unsplash.com/photo-1579762715118-8fe1bac6d7ab"
+          alt="Digital Art 2"
+          class="digitalArt-image w-full h-64 object-cover rounded-lg shadow-md"
+        />
+        <img
+          src="https://images.unsplash.com/photo-1604871000636-094462b5ef35"
+          alt="Digital Art 3"
+          class="digitalArt-image w-full h-64 object-cover rounded-lg shadow-md"
+        />
+
+        <!-- Pencil Sketch Images (Hidden by Default) -->
+        <img
+          src="https://images.unsplash.com/photo-1595347659863-5c0e47bef2d2"
+          alt="Pencil Sketch 1"
+          class="pencilSketch-image w-full h-64 object-cover rounded-lg shadow-md hidden"
+        />
+        <img
+          src="https://images.unsplash.com/photo-1499194451543-3a83785fac79"
+          alt="Pencil Sketch 2"
+          class="pencilSketch-image w-full h-64 object-cover rounded-lg shadow-md hidden"
+        />
+        <img
+          src="https://images.unsplash.com/photo-1595347659738-e9879f02195b"
+          alt="Pencil Sketch 3"
+          class="pencilSketch-image w-full h-64 object-cover rounded-lg shadow-md hidden"
+        />
+
+        <!-- Live Painting Images (Hidden by Default) -->
+        <img
+          src="https://images.unsplash.com/photo-1583324113626-70df0f4deaab"
+          alt="Live Painting 1"
+          class="livePainting-image w-full h-64 object-cover rounded-lg shadow-md hidden"
+        />
+        <img
+          src="https://images.unsplash.com/photo-1579965305759-8de067de15f9"
+          alt="Live Painting 2"
+          class="livePainting-image w-full h-64 object-cover rounded-lg shadow-md hidden"
+        />
+        <img
+          src="https://images.unsplash.com/photo-1578926375605-eaf4f2401a00"
+          alt="Live Painting 3"
+          class="livePainting-image w-full h-64 object-cover rounded-lg shadow-md hidden"
+        />
+      </div>
+
+      <!-- Load More Button -->
+      <div class="flex justify-center">
+        <button
+          class="px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors duration-300"
+        >
+          Load More
+        </button>
+      </div>
+    </div>
+  </body>
+</html>
