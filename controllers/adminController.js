@@ -41,7 +41,6 @@ const addMainCategory = async (req, res) => {
   }
 };
 
-// Image upload endpoint
 const addImage = async (req, res) => {
   try {
     if (!req.file) {
@@ -51,33 +50,78 @@ const addImage = async (req, res) => {
       });
     }
 
-    const { img_title, description, main_category_id, subcategory_id } =
-      req.body;
+    const {
+      img_title,
+      description,
+      main_category_id,
+      subcategory_id,
+      filterValues, // could be null, undefined, or an array
+    } = req.body;
 
-    const { data, error } = await supabase
+    console.log(" filterValues:", filterValues);
+
+    // Insert the image into art_images table
+    const { data: insertedImage, error: insertImageError } = await supabase
       .from("art_images")
       .insert([
         {
-          img_title: img_title,
+          img_title,
           img_url: req.file.path,
-          description: description,
-          main_category_id: main_category_id,
-          subcategory_id: subcategory_id,
+          description,
+          main_category_id,
+          subcategory_id,
         },
       ])
       .select()
       .single();
 
-    if (error) {
-      console.error("Error inserting data:", error);
-      return { status: 500, message: "Failed to insert data" };
+    if (insertImageError) {
+      console.error("Error inserting image:", insertImageError);
+      return res.status(500).json({
+        success: false,
+        message: "Failed to insert image data",
+      });
     }
 
-    // Return the Cloudinary response which includes image details
+    let parsedFilterValues = filterValues;
+
+    if (typeof filterValues === "string") {
+      try {
+        parsedFilterValues = JSON.parse(filterValues);
+      } catch (err) {
+        return res.status(400).json({
+          success: false,
+          message: "Invalid filterValues JSON format",
+        });
+      }
+    }
+
+    if (Array.isArray(parsedFilterValues) && parsedFilterValues.length > 0) {
+      const filterInsertData = parsedFilterValues.map((item) => ({
+        img_id: insertedImage.id,
+        filter_id: item.filter_id,
+        value: item.value,
+      }));
+      console.log("Preparing to insert filter values:", filterInsertData);
+
+      const { error: filterInsertError } = await supabase
+        .from("filter_value")
+        .insert(filterInsertData);
+
+      if (filterInsertError) {
+        console.error("Error inserting filter values:", filterInsertError);
+        return res.status(500).json({
+          success: false,
+          message: "Image inserted but failed to insert filter values",
+        });
+      }
+    }
+
+    // Return success response
     return res.status(200).json({
       success: true,
       message: "Image uploaded successfully",
-      data: data,
+      data: insertedImage,
     });
   } catch (error) {
     console.error("Upload error:", error);
