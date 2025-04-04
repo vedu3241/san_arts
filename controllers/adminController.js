@@ -66,4 +66,24 @@ const addImage = async (req, res) => {
   }
 };
 
-module.exports = { addMainCategory, addImage };
+const addSubcategory = async (req, res) => {
+  const { categoryId, subcategory_name, description } = req.body;
+
+  const { data, error } = await supabase
+    .from("subcategories")
+    .insert([
+      {
+        main_category_id: categoryId,
+        subcategory_name: subcategory_name,
+        description: description,
+      },
+    ])
+    .select()
+    .single();
+
+  if (error) throw error;
+
+  res.status(200).json(data);
+};
+
+module.exports = { addMainCategory, addImage, addSubcategory };
