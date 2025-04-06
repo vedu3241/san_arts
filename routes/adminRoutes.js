@@ -14,4 +14,3 @@ router.post("/addSubcategory", addSubcategory);
 router.post("/addFilter", addFilter);
 
 module.exports = router;
-  
