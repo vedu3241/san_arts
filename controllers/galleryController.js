@@ -142,9 +142,38 @@ const getImagesBySubcategory = async (req, res) => {
   }
 };
 
+const getImagesByFilter = async (req, res) => {
+  const { filterVal } = req.params;
+
+  try {
+    const { data: imgData, error } = await supabase
+      .from("filter_value")
+      .select(
+        `filter_id,
+        art_images(
+          img_url,
+          main_category_id,
+          subcategory_id,
+          img_title,
+          description,
+          created_at
+        )`
+      )
+      .eq("value", filterVal);
+
+    if (error) throw error;
+
+    res.status(200).json(imgData);
+  } catch (err) {
+    console.error("Unexpected error:", err);
+    res.status(500).json({ error: "An unexpected error occurred" });
+  }
+};
+
 module.exports = {
   getAllMainCategories,
   getAllSubCategories,
   getFiltersBySubCategory,
   getImagesBySubcategory,
+  getImagesByFilter,
 };
