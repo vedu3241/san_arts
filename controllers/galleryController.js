@@ -147,12 +147,12 @@ const getImagesBySubcategory = async (req, res) => {
   }
 };
 
-// 2. Then update your Node.js function:
+//OR filter
 const getFilteredImages = async (req, res) => {
   const { subcategory_id, filters } = req.body;
 
   try {
-    // Start with selecting all images in the subcategory
+
     let { data: allImages, error: initialError } = await supabase
       .from('art_images')
       .select('*')
@@ -202,6 +202,62 @@ const getFilteredImages = async (req, res) => {
   }
 };
 
+//AND  filter
+// const getFilteredImages = async (req, res) => {
+//   const { subcategory_id, filters } = req.body;
+
+//   try {
+//     // Start with selecting all images in the subcategory
+//     let { data: filteredImages, error: initialError } = await supabase
+//       .from('art_images')
+//       .select('*')
+//       .eq('subcategory_id', subcategory_id);
+
+//     if (initialError) {
+//       console.error('Initial query error:', initialError);
+//       return res.status(400).json({ error: initialError });
+//     }
+
+//     // If we have filters, apply them by fetching matching image IDs first
+//     if (filters && Object.keys(filters).length > 0) {
+//       // For each filter type
+//       for (const [filterId, values] of Object.entries(filters)) {
+//         if (values && values.length > 0) {
+//           // Get all image IDs that match this filter
+//           const { data: matchingImages, error: filterError } = await supabase
+//             .from('filter_value')
+//             .select('img_id')
+//             .eq('filter_id', filterId)
+//             .in('value', values);
+
+//           if (filterError) {
+//             console.error('Filter query error:', filterError);
+//             return res.status(400).json({ error: filterError });
+//           }
+
+//           // Extract the matching image IDs
+//           const matchingImageIds = matchingImages.map(img => img.img_id);
+
+//           // Filter our current results to only include images that match this filter
+//           filteredImages = filteredImages.filter(img =>
+//             matchingImageIds.includes(img.id)
+//           );
+//         }
+//       }
+
+//     }
+
+//     // Sort results by creation date (newest first)
+//     filteredImages.sort((a, b) =>
+//       new Date(b.created_at) - new Date(a.created_at)
+//     );
+
+//     return res.json(filteredImages || []);
+//   } catch (err) {
+//     console.error('Gallery filter error:', err);
+//     return res.status(500).json({ message: 'Server error', details: err.message });
+//   }
+// };
 
 
 module.exports = {
