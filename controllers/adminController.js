@@ -135,6 +135,12 @@ const addImage = async (req, res) => {
 
 const addSubcategory = async (req, res) => {
   try {
+    if (!req.file) {
+      return res.status(400).json({
+        success: false,
+        message: "no background image provided",
+      });
+    }
     const { categoryId, subcategory_name, description } = req.body;
 
     // Check for required fields
@@ -149,6 +155,7 @@ const addSubcategory = async (req, res) => {
           main_category_id: categoryId,
           subcategory_name: subcategory_name,
           description: description,
+          background_img: req.file.path,
         },
       ])
       .select()
