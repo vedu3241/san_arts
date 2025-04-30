@@ -1,5 +1,9 @@
 const express = require("express");
 const app = express();
+//add cors
+const cors = require("cors");
+//use cors
+app.use(cors());
 //import routes here
 const homeRoutes = require("./routes/homeRoutes");
 const adminRoutes = require("./routes/adminRoutes");

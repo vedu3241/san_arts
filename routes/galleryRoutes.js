@@ -5,7 +5,7 @@ const {
   getAllSubCategories,
   getFiltersBySubCategory,
   getImagesBySubcategory,
-  getImagesByFilter
+  getFilteredImages
 } = require("../controllers/galleryController");
 
 //routes
@@ -13,6 +13,6 @@ router.get("/getAllMainCategories", getAllMainCategories);
 router.get("/:categoryId/getAllSubCategories", getAllSubCategories);
 router.get("/:subCategoryId/getFilters", getFiltersBySubCategory);
 router.get("/:subCategoryId/getImages", getImagesBySubcategory);
-router.get("/filter/:filterVal", getImagesByFilter);
+router.post('/filter', getFilteredImages);
 
 module.exports = router;
